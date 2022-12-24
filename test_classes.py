@@ -7,10 +7,14 @@ import csv
 class TestItemRestrictionsAndSetters(unittest.TestCase):
     def setUp(self) -> None:
         # set up before each test
+        Item.item_list = []
         pass
+
     def tearDown(self) -> None:
         # tear dpwn after each test
+        Item.item_list = []
         pass
+
     def test_price_restriction(self):
         with self.assertRaises(AssertionError) as err:
             Item('Phone', 500, 0)
@@ -29,8 +33,6 @@ class TestItemRestrictionsAndSetters(unittest.TestCase):
         with self.assertRaises(AssertionError) as err:
             Item('Phone', 500, -1)
         self.assertEqual(str(err.exception), '-1 is not greater than 0')
-
-
 
     def test_item_name_setter_ristrictions(self):
         itm1 = Item('Phone', 200, 1)
@@ -54,13 +56,18 @@ class TestItemRestrictionsAndSetters(unittest.TestCase):
         itm1.set_new_quantity = 9
         self.assertEqual(itm1.restrict_quantity, 9)
 
-class TestItemCreation(unittest.TestCase):
+
+class TestItemClassCreation(unittest.TestCase):
     def setUp(self) -> None:
         # set up before each test
+        Item.item_list = []
         pass
+
     def tearDown(self) -> None:
         # tear dpwn after each test
+        Item.item_list = []
         pass
+
     def test_creating_item_with__repr__(self):
         itm1 = Item('Phone', 200, 1)
         self.assertEqual(str(itm1), 'Item(Phone,200,1)')
@@ -93,6 +100,14 @@ class TestItemCreation(unittest.TestCase):
         self.assertEqual(itm1.is_integer(itm2.price), False)
 
 
+class TestBrokenPhoneClassCreation(unittest.TestCase):
+    def setUp(self) -> None:
+        # set up before each test
+        Item.item_list = []
+        pass
+    def test_class_creation(self):
+        itm1 = Broken_phone('Huawei', 500, 1, 1)
+        self.assertEqual(str(itm1.item_list[0]), 'Broken_phone(Huawei,500,1,1)')
 
 if __name__ == '__main__':
     unittest.main()
