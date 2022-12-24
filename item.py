@@ -45,7 +45,6 @@ class Item:
         if len(value) > 10:
             raise Exception('The name is too long')
         else:
-            print('you are trying to set a new value to name')
             self.__name = value
 
     def calculate_total_price(self):
