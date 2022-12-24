@@ -5,10 +5,10 @@ class Item:
     pay_rate = 0.8  # discount
     item_list = []
 
-    def __init__(self, name: str, price: int, quantity=1):
+    def __init__(self, name: str, price: int, quantity: int):
 
-        assert price >= 0, f'{price} is not greater or equal to 0'
-        assert quantity >= 0, f'{quantity} is not greater or equal to 0'
+        assert price > 0, f'{price} is not greater than 0'
+        assert quantity > 0, f'{quantity} is not greater than 0'
         self.__name = name
         self.__price = price
         self.quantity = quantity
@@ -27,6 +27,7 @@ class Item:
     @property
     def restrict_quantity(self):
         return self.quantity
+
     @restrict_quantity.setter
     def set_new_quantity(self, value):
         if value > 10:
@@ -41,16 +42,14 @@ class Item:
 
     @restrict_name.setter
     def set_name(self, value):
-        if len(value) >10:
-            raise  Exception('The name is too long')
+        if len(value) > 10:
+            raise Exception('The name is too long')
         else:
             print('you are trying to set a new value to name')
             self.__name = value
 
     def calculate_total_price(self):
         return self.__price * self.quantity
-
-
 
     @classmethod
     def instantiate_from_csv(cls):
@@ -76,4 +75,4 @@ class Item:
             return False
 
     def __repr__(self):
-        return f"{self.__class__.__name__}({self.name},{self.__price},{self.quantity})"
+        return f"{self.__class__.__name__}({self.__name},{self.__price},{self.quantity})"

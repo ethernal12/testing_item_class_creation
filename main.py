@@ -3,7 +3,6 @@ from phone import Broken_phone
 
 
 
-item1 = Item('n sfa', 25)
+item1 = Item('nsfa', 25, 4)
 
-item1.apply_increment(0.1)
-print(item1.price)
+item1.set_name= 'dqwfqfewfwefwefwef'
