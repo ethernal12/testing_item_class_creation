@@ -4,7 +4,13 @@ from item import Item
 import csv
 
 
-class MyTestCase(unittest.TestCase):
+class TestItemRestrictionsAndSetters(unittest.TestCase):
+    def setUp(self) -> None:
+        # set up before each test
+        pass
+    def tearDown(self) -> None:
+        # tear dpwn after each test
+        pass
     def test_price_restriction(self):
         with self.assertRaises(AssertionError) as err:
             Item('Phone', 500, 0)
@@ -24,15 +30,7 @@ class MyTestCase(unittest.TestCase):
             Item('Phone', 500, -1)
         self.assertEqual(str(err.exception), '-1 is not greater than 0')
 
-    def test_creating_item_with__repr__(self):
-        itm1 = Item('Phone', 200, 1)
-        self.assertEqual(str(itm1), 'Item(Phone,200,1)')
 
-    def test_creating_item_and_adding_to_list(self):
-        Item('Phone', 200, 1)
-        Item('Desktop', 500, 1)
-        self.assertEqual(str(Item.item_list[0]), 'Item(Phone,200,1)')
-        self.assertEqual(str(Item.item_list[1]), 'Item(Desktop,500,1)')
 
     def test_item_name_setter_ristrictions(self):
         itm1 = Item('Phone', 200, 1)
@@ -56,19 +54,36 @@ class MyTestCase(unittest.TestCase):
         itm1.set_new_quantity = 9
         self.assertEqual(itm1.restrict_quantity, 9)
 
-    # def test_create_class_items_from_csv_file(self):
-    #     with open('items.csv', 'r') as f:
-    #         reader = csv.DictReader(f)
-    #         items = list(reader)
-    #         Item(
-    #             name=items[0].get('name'),
-    #             price=int(items[0].get('price')),
-    #             quantity=int(items[0].get('quantity'))
-    #         )
-    #
-    #     result = str(Item.item_list[0])
-    #     print(result)
-    #     self.assertEqual(result, 'Item(Phone,100,1)')
+class TestItemCreation(unittest.TestCase):
+    def setUp(self) -> None:
+        # set up before each test
+        pass
+    def tearDown(self) -> None:
+        # tear dpwn after each test
+        pass
+    def test_creating_item_with__repr__(self):
+        itm1 = Item('Phone', 200, 1)
+        self.assertEqual(str(itm1), 'Item(Phone,200,1)')
+
+    def test_creating_item_and_adding_to_list(self):
+        Item('Phone', 200, 1)
+        Item('Desktop', 500, 1)
+        self.assertEqual(str(Item.item_list[0]), 'Item(Phone,200,1)')
+        self.assertEqual(str(Item.item_list[1]), 'Item(Desktop,500,1)')
+
+    def test_create_class_items_from_csv_file(self):
+        with open('items.csv', 'r') as f:
+            reader = csv.DictReader(f)
+            items = list(reader)
+            Item(
+                name=items[0].get('name'),
+                price=int(items[0].get('price')),
+                quantity=int(items[0].get('quantity'))
+            )
+
+        result = str(Item.item_list[0])
+        print(result)
+        self.assertEqual(result, 'Item(Phone,100,1)')
 
     def test_if_price_is_non_zero_float(self):
         # if price is float with .0(i.e. 100.0) convert to int if not(100.5) convert to float
@@ -76,6 +91,7 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(itm1.is_integer(itm1.price), True)
         itm2 = Item('Phone', 200.5, 1)
         self.assertEqual(itm1.is_integer(itm2.price), False)
+
 
 
 if __name__ == '__main__':
