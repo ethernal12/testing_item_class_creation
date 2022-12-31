@@ -9,8 +9,8 @@ class Item:
 
         assert price > 0, f'{price} is not greater than 0'
         assert quantity > 0, f'{quantity} is not greater than 0'
-        self.__name = name
-        self.__price = price
+        self._name = name
+        self._price = price
         self.quantity = quantity
         self.item_list.append(self)  # self is contructed in __repr__
 
@@ -72,7 +72,8 @@ class Item:
             return True
         else:
             return False
-
+    def __eq__(self, other):
+        return self._name == other._name
     def __repr__(self):
 
-        return f"{self.__class__.__name__}({self.__name},{self.__price},{self.quantity})"
+        return f"{self.__class__.__name__}({self._name},{self._price},{self.quantity})"

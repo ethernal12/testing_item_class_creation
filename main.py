@@ -3,6 +3,9 @@ from phone import Broken_phone
 
 
 
-item1 = Item('nsfa', 25, 4)
+itm1 = Item('p', 1, 1)
 
-item1.set_name= 'dqwfqfewfwefwefwef'
+itm2 = Item('p', 4, 32)
+
+
+print(itm1 == itm2)

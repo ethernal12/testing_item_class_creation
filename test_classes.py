@@ -64,7 +64,7 @@ class TestItemClassCreation(unittest.TestCase):
         pass
 
     def tearDown(self) -> None:
-        # tear dpwn after each test
+        # tear down after each test
         Item.item_list = []
         pass
 
@@ -75,8 +75,8 @@ class TestItemClassCreation(unittest.TestCase):
     def test_creating_item_and_adding_to_list(self):
         Item('Phone', 200, 1)
         Item('Desktop', 500, 1)
-        self.assertEqual(str(Item.item_list[0]), 'Item(Phone,200,1)')
-        self.assertEqual(str(Item.item_list[1]), 'Item(Desktop,500,1)')
+        self.assertEqual(Item.item_list[0], Item('Phone', 200, 1))
+        self.assertEqual(Item.item_list[1], Item('Desktop', 500, 1))
 
     def test_create_class_items_from_csv_file(self):
         with open('items.csv', 'r') as f:
@@ -105,9 +105,11 @@ class TestBrokenPhoneClassCreation(unittest.TestCase):
         # set up before each test
         Item.item_list = []
         pass
+
     def test_class_creation(self):
         itm1 = Broken_phone('Huawei', 500, 1, 1)
-        self.assertEqual(str(itm1.item_list[0]), 'Broken_phone(Huawei,500,1,1)')
+        self.assertEqual(itm1.item_list[0], Broken_phone('Huawei', 500, 1, 1))
+
 
 if __name__ == '__main__':
     unittest.main()
