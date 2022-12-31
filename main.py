@@ -3,7 +3,9 @@ from phone import Broken_phone
 
 
 
-item1 = Item('n sfa', 25)
+itm1 = Item('p', 1, 1)
 
-item1.apply_increment(0.1)
-print(item1.price)
+itm2 = Item('p', 4, 32)
+
+
+print(itm1 == itm2)
