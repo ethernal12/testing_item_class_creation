@@ -7,7 +7,7 @@ class Broken_phone(Item):
         )
         self.broken_phone = broke_phone
 
-    # def __repr__(self):
-    #     print(self.broken_phone, 'broken_phone')
-    #     # how to override the repr method from item.class to add additional broken_phone attribute
-    #     return f"{self.__class__.__name__}({self.__name},{self.__price},{self.quantity},{self.broken_phone})"
+    def __repr__(self):
+        print(self.broken_phone, 'broken_phone')
+        # how to override the repr method from item.class to add additional broken_phone attribute
+        return f"{self.__class__.__name__}({self.__name},{self.__price},{self.quantity},{self.broken_phone})"
